@@ -23,12 +23,21 @@ export default function QueueTest() {
   });
 
   return (
-    <Button
-      onClick={() =>
-        execute({ message: `TEST${Math.random().toFixed(3).toString()}` })
-      }
-    >
-      Send Message
-    </Button>
+    <>
+      <Button onClick={() => execute({ message: "123.jpg" })}>
+        Send Message
+      </Button>
+      <Button
+        onClick={() =>
+          fetch(`${process.env.NEXT_PUBLIC_WORKER_URL!}?key=123.jpg`, {
+            headers: new Headers({
+              "x-access-key": process.env.NEXT_PUBLIC_ACCESS_KEY!,
+            }),
+          })
+        }
+      >
+        Send Fetch
+      </Button>
+    </>
   );
 }
